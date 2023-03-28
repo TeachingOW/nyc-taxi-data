@@ -1,1 +1,3 @@
-libxml2
+sudo apt install r-base
+sudo apt install r-base-dev
+sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev 
