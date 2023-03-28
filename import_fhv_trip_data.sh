@@ -4,7 +4,7 @@ fhv_schema="(dispatching_base_num, pickup_datetime, dropoff_datetime, pickup_loc
 
 for parquet_filename in data/fhv_tripdata*.parquet; do
   echo "`date`: converting ${parquet_filename} to csv"
-  ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
+  R ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
 
   csv_filename=${parquet_filename/.parquet/.csv}
   cat $csv_filename | psql nyc-taxi-data -c "COPY fhv_trips_staging ${fhv_schema} FROM stdin CSV HEADER;"
