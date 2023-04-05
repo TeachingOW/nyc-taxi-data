@@ -17,7 +17,7 @@ for parquet_filename in data/yellow_tripdata*.parquet; do
   fi
 
   echo "`date`: converting ${parquet_filename} to csv"
-  ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
+  Rscript ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
 
   csv_filename=${parquet_filename/.parquet/.csv}
   cat $csv_filename | psql nyc-taxi-data -c "COPY yellow_tripdata_staging ${schema} FROM stdin CSV HEADER;"
