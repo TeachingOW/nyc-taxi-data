@@ -4,7 +4,7 @@ fhvhv_schema="(hvfhs_license_num, dispatching_base_num, originating_base_num, re
 
 for parquet_filename in data/fhvhv_tripdata*.parquet; do
   echo "`date`: converting ${parquet_filename} to csv"
-  ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
+  Rscript ./setup_files/convert_parquet_to_csv.R ${parquet_filename}
 
   csv_filename=${parquet_filename/.parquet/.csv}
   cat $csv_filename | psql nyc-taxi-data -c "COPY fhv_trips_staging ${fhvhv_schema} FROM stdin CSV HEADER;"
